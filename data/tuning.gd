@@ -11,10 +11,10 @@ extends Resource
 
 @export_group("Pipes")
 @export var pipe_scroll_speed: float = 150.0
-@export var pipe_gap: float = 140.0
+@export var pipe_gap: float = 115.0
 @export var pipe_spawn_interval: float = 1.4
 @export var pipe_gap_y_min: float = 120.0
-@export var pipe_gap_y_max: float = 290.0  ## viewport - ground (112) - half_gap (70) - margin
+@export var pipe_gap_y_max: float = 320.0  ## viewport - ground (112) - half_gap (57.5) - margin
 
 @export_group("World")
 @export var viewport_size: Vector2i = Vector2i(288, 512)

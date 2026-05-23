@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b3xmainscene"]
+[gd_scene load_steps=14 format=3 uid="uid://b3xmainscene"]
 
 [ext_resource type="Script" path="res://src/main/main.gd" id="1_main"]
 [ext_resource type="Resource" uid="uid://b3xtuningres1" path="res://data/tuning.tres" id="2_tuning"]
@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://b3xhudscene" path="res://src/hud/hud.tscn" id="5_hud"]
 [ext_resource type="Texture2D" uid="uid://byktpy7btxw6b" path="res://Assets/Sprites/background-day.png" id="6_bg"]
 [ext_resource type="Texture2D" uid="uid://bijwx1wctd5fj" path="res://Assets/Sprites/base.png" id="7_base"]
+[ext_resource type="AudioStream" uid="uid://pu5r4dalgk8a" path="res://Assets/Audio/wing.ogg" id="8_wing"]
+[ext_resource type="AudioStream" uid="uid://oqcalls1d1g2" path="res://Assets/Audio/hit.ogg" id="9_hit"]
+[ext_resource type="AudioStream" uid="uid://cempbipdhbnlm" path="res://Assets/Audio/die.ogg" id="10_die"]
+[ext_resource type="AudioStream" uid="uid://ba2xnckvcyvoi" path="res://Assets/Audio/point.ogg" id="11_point"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
 size = Vector2(288, 112)
@@ -18,9 +22,13 @@ size = Vector2(288, 8)
 script = ExtResource("1_main")
 tuning = ExtResource("2_tuning")
 
-[node name="Background" type="TextureRect" parent="."]
-offset_right = 288.0
-offset_bottom = 512.0
+[node name="BackgroundScroll" type="Parallax2D" parent="."]
+repeat_size = Vector2(288, 0)
+repeat_times = 3
+autoscroll = Vector2(-30, 0)
+
+[node name="BackgroundSprite" type="Sprite2D" parent="BackgroundScroll"]
+position = Vector2(144, 256)
 texture = ExtResource("6_bg")
 
 [node name="PipeSpawner" type="Node2D" parent="."]
@@ -30,15 +38,20 @@ tuning = ExtResource("2_tuning")
 [node name="Bird" parent="." instance=ExtResource("3_bird")]
 position = Vector2(80, 220)
 
+[node name="GroundScroll" type="Parallax2D" parent="."]
+scroll_offset = Vector2(0, 400)
+repeat_size = Vector2(336, 0)
+repeat_times = 3
+autoscroll = Vector2(-150, 0)
+
+[node name="GroundSprite" type="Sprite2D" parent="GroundScroll"]
+position = Vector2(168, 56)
+texture = ExtResource("7_base")
+
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(144, 456)
 collision_layer = 1
 collision_mask = 0
-
-[node name="GroundSprite" type="Sprite2D" parent="Ground"]
-texture = ExtResource("7_base")
-region_enabled = true
-region_rect = Rect2(0, 0, 288, 112)
 
 [node name="GroundShape" type="CollisionShape2D" parent="Ground"]
 shape = SubResource("RectangleShape2D_ground")
@@ -52,3 +65,15 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_ceiling")
 
 [node name="Hud" parent="." instance=ExtResource("5_hud")]
+
+[node name="FlapSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_wing")
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_hit")
+
+[node name="DieSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_die")
+
+[node name="PointSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_point")

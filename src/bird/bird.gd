@@ -4,6 +4,7 @@ class_name Bird
 extends CharacterBody2D
 
 signal crashed
+signal flapped
 
 @export var tuning: Tuning
 
@@ -18,6 +19,7 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("flap"):
 		velocity.y = tuning.flap_velocity
+		flapped.emit()
 
 	velocity.y = minf(velocity.y + tuning.gravity * delta, tuning.max_fall_speed)
 	_update_rotation()
