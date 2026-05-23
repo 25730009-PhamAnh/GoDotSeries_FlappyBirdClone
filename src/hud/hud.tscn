@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3xhudscene"]
+
+[ext_resource type="Script" path="res://src/hud/hud.gd" id="1_hud"]
+
+[node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_hud")
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 20.0
+offset_right = 40.0
+offset_bottom = 70.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 36
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+
+[node name="GameOverPanel" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 0
+
+[node name="Dim" type="ColorRect" parent="GameOverPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.45)
+
+[node name="VBox" type="VBoxContainer" parent="GameOverPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -70.0
+offset_right = 100.0
+offset_bottom = 70.0
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Title" type="Label" parent="GameOverPanel/VBox"]
+text = "Game Over"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="FinalScore" type="Label" parent="GameOverPanel/VBox"]
+text = "Score: 0"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="BestScore" type="Label" parent="GameOverPanel/VBox"]
+text = "Best:  0"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="RestartButton" type="Button" parent="GameOverPanel/VBox"]
+text = "Restart"
+custom_minimum_size = Vector2(120, 40)

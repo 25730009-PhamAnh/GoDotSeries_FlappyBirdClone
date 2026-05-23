@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Tuning" load_steps=2 format=3 uid="uid://b3xtuningres1"]
+
+[ext_resource type="Script" path="res://data/tuning.gd" id="1_tuning"]
+
+[resource]
+script = ExtResource("1_tuning")
+gravity = 1200.0
+flap_velocity = -380.0
+max_fall_speed = 600.0
+bird_rotation_max_deg = 30.0
+pipe_scroll_speed = 150.0
+pipe_gap = 140.0
+pipe_spawn_interval = 1.4
+pipe_gap_y_min = 120.0
+pipe_gap_y_max = 312.0
+viewport_size = Vector2i(288, 512)
+ground_height = 64.0
