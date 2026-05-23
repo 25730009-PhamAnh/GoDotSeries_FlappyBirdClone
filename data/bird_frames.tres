@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://b3xbirdframes1"]
+
+[ext_resource type="Texture2D" uid="uid://5lklwe8tvp7l" path="res://Assets/Sprites/bluebird-downflap.png" id="1_down"]
+[ext_resource type="Texture2D" uid="uid://dasgl1h434y66" path="res://Assets/Sprites/bluebird-midflap.png" id="2_mid"]
+[ext_resource type="Texture2D" uid="uid://dparosmcp2vsl" path="res://Assets/Sprites/bluebird-upflap.png" id="3_up"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_up")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_down")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 10.0
+}]

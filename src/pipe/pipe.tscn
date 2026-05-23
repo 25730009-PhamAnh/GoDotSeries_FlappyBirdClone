@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b3xpipescene"]
+[gd_scene load_steps=4 format=3 uid="uid://b3xpipescene"]
 
 [ext_resource type="Script" path="res://src/pipe/pipe.gd" id="1_pipe"]
+[ext_resource type="Texture2D" uid="uid://d0fncxtlh8yju" path="res://Assets/Sprites/pipe-green.png" id="2_pipegreen"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pipe"]
+size = Vector2(52, 600)
 
 [node name="Pipe" type="Node2D"]
 script = ExtResource("1_pipe")
@@ -9,19 +13,26 @@ script = ExtResource("1_pipe")
 collision_layer = 4
 collision_mask = 0
 
-[node name="TopVisual" type="ColorRect" parent="TopBody"]
-color = Color(0.2, 0.7, 0.3, 1)
+[node name="TopSprite" type="Sprite2D" parent="TopBody"]
+position = Vector2(0, -160)
+flip_v = true
+texture = ExtResource("2_pipegreen")
 
 [node name="TopShape" type="CollisionShape2D" parent="TopBody"]
+position = Vector2(0, -300)
+shape = SubResource("RectangleShape2D_pipe")
 
 [node name="BottomBody" type="StaticBody2D" parent="."]
 collision_layer = 4
 collision_mask = 0
 
-[node name="BottomVisual" type="ColorRect" parent="BottomBody"]
-color = Color(0.2, 0.7, 0.3, 1)
+[node name="BottomSprite" type="Sprite2D" parent="BottomBody"]
+position = Vector2(0, 160)
+texture = ExtResource("2_pipegreen")
 
 [node name="BottomShape" type="CollisionShape2D" parent="BottomBody"]
+position = Vector2(0, 300)
+shape = SubResource("RectangleShape2D_pipe")
 
 [node name="ScoreArea" type="Area2D" parent="."]
 collision_layer = 8

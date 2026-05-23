@@ -14,8 +14,8 @@ extends Resource
 @export var pipe_gap: float = 140.0
 @export var pipe_spawn_interval: float = 1.4
 @export var pipe_gap_y_min: float = 120.0
-@export var pipe_gap_y_max: float = 312.0  ## viewport_height (512) - 200
+@export var pipe_gap_y_max: float = 290.0  ## viewport - ground (112) - half_gap (70) - margin
 
 @export_group("World")
 @export var viewport_size: Vector2i = Vector2i(288, 512)
-@export var ground_height: float = 64.0
+@export var ground_height: float = 112.0  ## matches base.png
