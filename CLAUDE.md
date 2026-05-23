@@ -1,18 +1,13 @@
-# Claude Code Game Studios -- Game Studio Agent Architecture
+# Flappy Bird Clone — Solo Dev Workflow
 
-Indie game development managed through 49 coordinated Claude Code subagents.
-Each agent owns a specific domain, enforcing separation of concerns and quality.
+Small solo project for testing the Claude Code workflow. Intentionally trimmed
+to the bare minimum. No sprints, no epics, no ADRs, no traceability matrix.
 
-## Technology Stack
+## Stack
 
-- **Engine**: [CHOOSE: Godot 4 / Unity / Unreal Engine 5]
-- **Language**: [CHOOSE: GDScript / C# / C++ / Blueprint]
-- **Version Control**: Git with trunk-based development
-- **Build System**: [SPECIFY after choosing engine]
-- **Asset Pipeline**: [SPECIFY after choosing engine]
-
-> **Note**: Engine-specialist agents exist for Godot, Unity, and Unreal with
-> dedicated sub-specialists. Use the set matching your engine.
+- **Engine**: Godot 4 (see `docs/engine-reference/godot/VERSION.md` for pinned version)
+- **Language**: GDScript
+- **Version Control**: Git
 
 ## Project Structure
 
@@ -22,33 +17,42 @@ Each agent owns a specific domain, enforcing separation of concerns and quality.
 
 @docs/engine-reference/godot/VERSION.md
 
-## Technical Preferences
-
-@.claude/docs/technical-preferences.md
-
-## Coordination Rules
-
-@.claude/docs/coordination-rules.md
-
-## Collaboration Protocol
-
-**User-driven collaboration, not autonomous execution.**
-Every task follows: **Question -> Options -> Decision -> Draft -> Approval**
-
-- Agents MUST ask "May I write this to [filepath]?" before using Write/Edit tools
-- Agents MUST show drafts or summaries before requesting approval
-- Multi-file changes require explicit approval for the full changeset
-- No commits without user instruction
-
-See `docs/COLLABORATIVE-DESIGN-PRINCIPLE.md` for full protocol and examples.
-
-> **First session?** If the project has no engine configured and no game concept,
-> run `/start` to begin the guided onboarding flow.
-
 ## Coding Standards
 
 @.claude/docs/coding-standards.md
 
-## Context Management
+## Solo Workflow
 
-@.claude/docs/context-management.md
+The whole loop:
+
+1. `/brainstorm` — what's the game (skip if you already know)
+2. `/setup-engine` — pin Godot version (once)
+3. `/design-system` — one short GDD for the core mechanic
+4. Code it (use `gameplay-programmer` or `godot-gdscript-specialist` agents)
+5. `/code-review` before merging
+6. `/smoke-check` before declaring done
+7. Ship
+
+Skip everything else unless you actually need it.
+
+## Available Agents
+
+- `godot-specialist` — Godot 4 patterns and APIs
+- `godot-gdscript-specialist` — GDScript code quality
+- `game-designer` — design questions and the one GDD
+- `gameplay-programmer` — implementation
+- `qa-tester` — write a test or a bug report
+
+## Available Skills
+
+`/brainstorm`, `/setup-engine`, `/design-system`, `/prototype`, `/code-review`,
+`/test-setup`, `/smoke-check`, `/bug-report`, `/start`, `/help`
+
+## Solo-Dev Rules
+
+- **No ADRs.** If you make a technical choice, just make it. Write a comment if it matters.
+- **No epic/story/sprint ceremony.** Use a TODO list. Done.
+- **One GDD max.** Flappy Bird has one mechanic. Don't over-document.
+- **Tests where they help.** Logic (score, collision math) → unit test. Visual → click around.
+- **Commit when something works.** Conventional Commits style (`feat:`, `fix:`, `chore:`).
+- **Ask before destructive actions.** Otherwise just go.
